@@ -1,6 +1,3 @@
-############################################
-# TODO: 重写运算
-############################################
 include("./unitsComRule.jl")
 
 module calc
@@ -46,6 +43,7 @@ module calc
     function Wq(temp::Quantity,P::Quantity)
         return 622 .* e(temp) ./ (P .- e(temp))
     end
+
     #############################温度特征参量#############################
     # 位温
     function theta(temp::Quantity,P::Quantity,P0::Quantity)
@@ -57,7 +55,6 @@ module calc
         P0=1013.25u"hPa"
         temp=degC2K(temp)
         dew_temp=degC2K(dew_temp)
-        RH=relative_humidity(temp,dew_temp)
         Tlcl = 1 / ((1 / (temp - 56)) + log(temp/dew_temp)/800) + 56
         r = 0.622*e(dew_temp).val/(P.val-e(dew_temp).val)*u"g/g"
         T_theta=theta(temp,P,P0)
@@ -75,4 +72,5 @@ module calc
         q1=uconvert(u"g/g",q(temp,P))
         return (1 .+ 0.61 .* q1) .* temp
     end
+
 end
