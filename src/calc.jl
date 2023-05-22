@@ -4,7 +4,7 @@ module calc
     include("./unitsconvert.jl")
     using Unitful
     export e,q
-    export relative_humidity
+    export relative_humidity,dewpoint
     # 大气压强
     # https://latex.codecogs.com/svg.image?&space;P=P_0e^{-\frac{Mgh}{RT}}
     function atmospheric_pressure(P0::Quantity, M::Quantity, g::Quantity, h::Quantity, R::Quantity, T::Quantity)
@@ -18,7 +18,8 @@ module calc
     # https://latex.codecogs.com/svg.image?&space;e=6.11\times10%20^{\frac{7.5\times%20t}{237.3\times%20t}}
     function e(temp::Quantity) # K
         # return 6.11 .* 10^((7.5 .* temp) ./ (237.3 .+ temp))
-        return (6.112 .* exp(17.67 .* (temp - 273.15) ./ (temp-273.15 .+ 243.5)))u"hPa"
+        temp =degC2K(temp)
+        return (6.112 .* exp(17.67 .* (temp.val .- 273.15) ./ (temp.val .- 273.15 .+ 243.5)))u"hPa"
     end
     
     # 计算相对湿度 
@@ -71,6 +72,19 @@ module calc
         temp=degC2K(temp)
         q1=uconvert(u"g/g",q(temp,P))
         return (1 .+ 0.61 .* q1) .* temp
+    end
+
+    # 由水汽压计算露点温度
+    function dewpoint(vapor_pressure::Quantity) # >| K
+        temp=243.5 * log(vapor_pressure.val/6.122)/(17.67-log(vapor_pressure.val/6.122))*u"°C"
+        temp=degC2K(temp)
+        return temp
+    end
+    # 由温度和相对湿度计算露点温度
+    function dewpoint_from_relative_humidity(temp::Quantity,rh::Number)
+        temp=degC2K(temp)
+        en=rh*e(temp)/100
+        return dewpoint(en)
     end
 
 end

@@ -38,3 +38,5 @@ P=850u"hPa"
 temp=20u"°C"
 dew_temp=18u"°C"
 println("theta_e\t",calc.theta_e(P,temp,dew_temp))
+
+println("dewpoint\t",calc.dewpoint_from_relative_humidity(15u"°C",50))
