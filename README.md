@@ -2,7 +2,8 @@
 Writing meteorological physics calculation program in Julia.
 
 利用 Julia 编写气象中常见的物理量计算程序
-[![](https://tokei.rs/b1/github/Aaronepower/tokei)](https://github.com/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations).
+
+![](https://tokei.rs/b1/github/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)](https://github.com/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations).
 # 正在进行的工作
 - 编写各特征参量的计算程序
 - 设计新类型以便处理不同要素计算同一特征参量的情况
