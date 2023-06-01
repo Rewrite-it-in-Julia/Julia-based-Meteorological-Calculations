@@ -3,7 +3,7 @@ Writing meteorological physics calculation program in Julia.
 
 利用 Julia 编写气象中常见的物理量计算程序.
 
-[![lines of code](https://tokei.rs/b1/github/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)](https://github.com/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)
+[![Lines of Code](https://tokei.rs/b1/github/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)](https://github.com/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)
 [![](https://tokei.rs/b1/github/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations?category=comments)](https://github.com/Rewrite-it-in-Julia/Julia-based-Meteorological-Calculations)
 # 正在进行的工作
 - 编写各特征参量的计算程序
